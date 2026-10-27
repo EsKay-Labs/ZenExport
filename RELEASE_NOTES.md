@@ -2,6 +2,12 @@
 
 Released: 2026-10-28.
 
+> **Windows SmartScreen warning:** this installer is unsigned. Windows may display
+> **“Windows protected your PC”** and **“Publisher: Unknown publisher.”**
+> If you prefer not to run the EXE, download **ZenExport-6.2.0.zip** and follow the
+> [manual installation steps in the README](https://github.com/EsKay-Labs/ZenExport#readme).
+> Manual installation uses the same preview add-in without running the Setup EXE.
+
 ## 📦 Install without manual folder setup
 
 - **Windows:** open `ZenExport-6.2.0-Windows-Setup.exe`, then restart Fusion.
