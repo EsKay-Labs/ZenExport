@@ -247,6 +247,11 @@ def uninstall(destination):
         for directory, _, _ in os.walk(target, topdown=False):
             if not any(Path(directory).iterdir()):
                 Path(directory).rmdir()
+        if target.exists():
+            # Retain ownership when user files remain, so a later reinstall does
+            # not mistake this known directory for an unrelated destination.
+            receipt["uninstalled"] = True
+            (target / RECEIPT).write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
         return {"status": "uninstalled", "target": str(target), "modified_files_preserved": preserved}
 
 

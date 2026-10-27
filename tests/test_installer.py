@@ -126,6 +126,11 @@ class InstallerTests(unittest.TestCase):
         self.assertEqual(modified.read_bytes(), b"user edit")
         self.assertEqual(settings.read_bytes(), b"private settings")
         self.assertFalse((self.target / "ZenExport.py").exists())
+        result = setup.install(self.data, self.target)
+        self.assertEqual(result["status"], "installed")
+        self.assertEqual(user_file.read_bytes(), b"keep")
+        with zipfile.ZipFile(result["backup"]) as archive:
+            self.assertEqual(archive.read("zenexport/model.py"), b"user edit")
 
     def test_uninstall_removes_empty_owned_directory_and_is_repeatable(self):
         setup.install(self.data, self.target)

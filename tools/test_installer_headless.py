@@ -75,9 +75,17 @@ def smoke(executable):
         assert settings.read_bytes() == b'{"private_settings": true}'
         assert project.read_bytes() == b"user-model-must-not-change"
         steps.append("uninstall preserves custom files, user settings and CAD/STL exports")
-        # Installation into unrelated content must fail without changing it.
-        assert run(expected=1)["status"] == "error"
+        assert run()["status"] == "installed"
         assert custom.read_bytes() == b"keep-this-file"
+        assert run("--uninstall")["status"] == "uninstalled"
+        steps.append("reinstall after uninstall works even when custom files were retained")
+        # Installation into unrelated content must fail without changing it.
+        unrelated = home / "unrelated"
+        unrelated.mkdir()
+        note = unrelated / "important.txt"
+        note.write_bytes(b"unrelated-content")
+        assert run("--target", str(unrelated), expected=1)["status"] == "error"
+        assert note.read_bytes() == b"unrelated-content"
         steps.append("unrelated nonempty target is refused")
         print(json.dumps({"platform": sys.platform, "executable": str(executable),
                           "version": receipt["version"], "headless_checks": steps}, indent=2))
