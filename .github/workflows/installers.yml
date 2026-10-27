@@ -1,0 +1,40 @@
+name: Build and test native installers
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  installer:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: Windows
+          - os: macos-15
+            platform: macOS-arm64
+          - os: macos-15-intel
+            platform: macOS-x86_64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r requirements-build.txt
+      - run: python -m unittest discover -s tests -v
+      - run: python tools/build_installer.py
+      - name: Test the actual EXE without UI or Fusion
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $installer = Get-ChildItem dist/*-Windows-Setup.exe | Select-Object -ExpandProperty FullName
+          python tools/test_installer_headless.py $installer
+      - name: Test the actual app without UI or Fusion
+        if: runner.os == 'macOS'
+        run: python tools/test_installer_headless.py dist/ZenExport-Setup.app/Contents/MacOS/ZenExport-Setup
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ZenExport-installer-${{ matrix.platform }}
+          path: |
+            dist/ZenExport-*-Windows-Setup.exe*
+            dist/ZenExport-*-macOS-*.zip*

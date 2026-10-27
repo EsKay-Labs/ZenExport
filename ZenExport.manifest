@@ -1,11 +1,12 @@
 {
-	"autodeskProduct":	"Fusion360",
-	"type":	"addin",
-	"runOnStartup":	true,
-	"author":	"ZenExport",
-	"description":	{
-		"":	"Automated local backup system with versioning, thumbnails, and instant access."
-	},
-	"supportedOS":	"windows|mac",
-	"editEnabled":	true
+  "autodeskProduct": "Fusion360",
+  "type": "addin",
+  "runOnStartup": true,
+  "author": "ZenExport",
+  "description": {
+    "": "Automated local backup system with versioning, thumbnails, and instant access."
+  },
+  "supportedOS": "windows|mac",
+  "editEnabled": true,
+  "version": "6.2.0"
 }

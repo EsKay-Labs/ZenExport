@@ -1,6 +1,6 @@
 [project]
 name = "zenexport"
-version = "6.1.2"
+version = "6.2.0"
 description = "Versioned local exports for Autodesk Fusion"
 requires-python = ">=3.10"
 dependencies = []

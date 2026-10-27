@@ -1,6 +1,6 @@
 # Project plan
 
-Updated: 2026-10-25.
+Updated: 2026-10-28.
 
 ## Current focus
 
@@ -10,6 +10,10 @@ verified. Detailed findings are in `.agent/knowledge/architecture.md`.
 
 ## Completed
 
+- [x] 6.2.0: implement an offline per-user installer with embedded Python, automatic
+      Fusion target selection, startup manifest, staged upgrades/rollback, backups,
+      repair and ownership-aware uninstall. Add 14 installer regression tests and
+      isolated frozen-executable headless checks; native CI covers Windows/macOS.
 - [x] 6.1.2: explicitly export STL coordinates in millimeters and add regression
       coverage for mm/cm/m/inch defaults and rejected unit settings (65 tests).
 - [x] 6.1.1: implement the clarified layout CAD/revision and Models/revision with
@@ -53,6 +57,8 @@ verified. Detailed findings are in `.agent/knowledge/architecture.md`.
 
 ## Required validation outside automated mocks
 
+- [ ] Confirm installed 6.2.0 is discovered and started exactly once by a fresh
+      Fusion session, and validate downloaded installer prompts/signing separately.
 - [ ] Verify 6.1.2 STL dimensions against the Fusion source and Bambu Studio at
       100% scale; the attempted live check was interrupted before execution.
 - [ ] Verify the 6.1.1 description prompt, paired revision folders, and project opening

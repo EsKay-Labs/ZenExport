@@ -37,7 +37,7 @@ Use a disposable project and retain a separate known-good backup.
 - Load, stop and reload twice; confirm one pair of toolbar commands and no duplicate
   interception. Check native Save with interception enabled and disabled.
 - Verify the final description prompt, paired revision folders, and opening of the
-  project root in Fusion with ZenExport 6.1.2.
+  project root in Fusion with ZenExport 6.2.0.
 - Export two separate Untitled documents to different folders; edit and switch tabs.
 - Reopen the first exported F3D and confirm its destination is remembered.
 - Change a parameter without adding timeline items; confirm a new numbered revision.
@@ -51,5 +51,5 @@ Use a disposable project and retain a separate known-good backup.
 - Verify macOS and any future MSI install/upgrade/uninstall separately.
 
 Earlier 6.0.3/6.1.0 exports succeeded in the local Fusion session; they do not
-establish semantic recovery or final 6.1.2 acceptance. Earlier filesystem migration
+establish semantic recovery or final 6.2.0 acceptance. Earlier filesystem migration
 preserved payload hashes, which likewise does not prove exported-model validity.

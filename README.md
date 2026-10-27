@@ -6,7 +6,7 @@
 Built by a maker for the repetitive part between changing a design and preparing it
 for printing. Shared by **EsKay-Labs** as a free gift to the community. 🎁
 
-[📦 Download 6.1.2 Preview](https://github.com/EsKay-Labs/ZenExport/releases/tag/v6.1.2) ·
+[📦 Download 6.2.0 Preview](https://github.com/EsKay-Labs/ZenExport/releases/tag/v6.2.0) ·
 [🐛 Report an issue](https://github.com/EsKay-Labs/ZenExport/issues) ·
 [📜 MIT License](LICENSE)
 
@@ -97,7 +97,36 @@ keep these with the project.
 
 ## 🚀 Get started
 
-1. Download and extract the [release ZIP](https://github.com/EsKay-Labs/ZenExport/releases/tag/v6.1.2).
+### Windows: double-click and go 🪟
+
+Download **ZenExport-6.2.0-Windows-Setup.exe** from the
+[release downloads](https://github.com/EsKay-Labs/ZenExport/releases/tag/v6.2.0) and open it.
+It installs for your user automatically. **Restart Fusion**, open a design and press
+**CTRL + S**. No folder picking, manual copying, Python installation or administrator
+access is needed. Setup works offline.
+
+### macOS: open the installer app 🍎
+
+Download the **macOS-arm64 ZIP** for Apple silicon or **macOS-x86_64 ZIP** for Intel
+from the same release. Unzip and open **ZenExport-Setup.app**, then restart Fusion.
+The app installs the add-in automatically; you do not need to drag files into Fusion
+folders. The two packages run natively on their respective processor architectures.
+
+The installers are currently unsigned/not notarized. Windows or macOS may show a
+publisher or download-security prompt; headless tests do not verify those prompts.
+No native Linux installer is supplied because
+[Fusion supports Windows and macOS](https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/Is-there-any-way-to-install-Fusion-360-in-Linux.html).
+
+Reopening the installer updates or repairs its installation. Settings and exported
+projects are retained, and a previous installation is backed up before replacement.
+A recognized existing manual AddIns installation is reused; unrelated folders and
+development checkouts are refused. Stop separately registered development/script
+copies before using the installed copy so only one ZenExport runs.
+
+<details>
+<summary>Portable ZIP / installing directly from source</summary>
+
+1. Download and extract the [portable ZIP](https://github.com/EsKay-Labs/ZenExport/releases/tag/v6.2.0).
 2. Copy `ZenExport.bundle/Contents` into a folder named **ZenExport**.
 3. In Fusion, open **Utilities → Scripts and Add-Ins** and add that folder.
 4. Stop any older ZenExport instance, then run the new one. Optionally enable **Run on Startup**.
@@ -115,13 +144,19 @@ ZenExport/
 ```
 
 You can also install from repository source using that same structure. Run one copy
-of ZenExport at a time. The manual route avoids relying on automatic bundle discovery,
-which still needs live validation.
+of ZenExport at a time. Live Fusion discovery/startup still requires acceptance testing.
 
-Default add-in locations:
+</details>
 
-- Windows: `%APPDATA%\Autodesk\Autodesk Fusion 360\API\AddIns\ZenExport`
-- macOS: `~/Library/Application Support/Autodesk/Autodesk Fusion 360/API/AddIns/ZenExport`
+The installer uses Fusion's documented automatic-discovery location by default:
+
+- Windows: `%APPDATA%\Autodesk\FusionAddins\ZenExport`
+- macOS: `~/Library/Application Support/Autodesk/FusionAddins/ZenExport`
+
+The included manifest enables Run on Startup. An existing recognized installation
+in either the older `Autodesk Fusion 360/API/AddIns` or newer `Autodesk Fusion/API/AddIns`
+location is updated in place if exactly one is found. Source folders under `Scripts`
+are left alone. The installer never closes Fusion or saves/changes your open designs.
 
 ### 🧰 Toolbar commands
 
@@ -221,11 +256,13 @@ succeeds. An optional preview failure is recorded separately.
 
 ## 🧪 Current release status
 
-**6.1.2 is a preview update.**
+**6.2.0 is a preview update.**
 
-**65 automated tests pass locally**, covering simulated Fusion events, filesystem
-behavior, migration, packaging and STL units across mm, cm, meters and inches.
-The previous release passed Windows CI on Python 3.10 and 3.13; check
+**79 automated tests pass locally**, covering simulated Fusion events, filesystem
+behavior, migration, packaging, STL units and installer transactions. The frozen
+Windows EXE also passed isolated headless install, upgrade, repair and uninstall
+checks without Fusion, with private settings and CAD/STL fixtures preserved.
+Native CI builds/test-runs the Windows and both macOS installers; check
 [GitHub Actions](https://github.com/EsKay-Labs/ZenExport/actions) for this update's result.
 
 Earlier 6.0.3 and 6.1.0 exports succeeded in the local Fusion session. The final 6.1.2
@@ -245,7 +282,8 @@ Start with a disposable design and retain separate known-good backups.
 - Mesh bodies and drawings are outside the per-part export workflow.
 - Cancellation takes effect between export files when Fusion delivers it.
 - No automatic cleanup deletes older revisions. Full snapshots consume additional disk space.
-- macOS compatibility and MSI installation have not been verified. No MSI is supplied.
+- Headless installer checks do not establish live Fusion startup, export compatibility
+  or Gatekeeper/SmartScreen approval. No MSI is supplied.
 - ZenExport does not change Autodesk's licensing requirements or limits.
 - Independent concurrent Fusion runtimes should use separate `ZENEXPORT_DATA_DIR` locations.
 

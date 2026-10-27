@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="*" Name="ZenExport for Fusion 360" Language="1033" Version="6.1.2" Manufacturer="ZenExport Team" UpgradeCode="6A2B6869-32F9-4674-9273-04724E683074">
+    <Product Id="*" Name="ZenExport for Fusion 360" Language="1033" Version="6.2.0" Manufacturer="ZenExport Team" UpgradeCode="6A2B6869-32F9-4674-9273-04724E683074">
         <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
 
         <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

@@ -1,3 +1,33 @@
+# ZenExport 6.2.0 preview — double-click installation
+
+Released: 2026-10-28.
+
+## 📦 Install without manual folder setup
+
+- **Windows:** open `ZenExport-6.2.0-Windows-Setup.exe`, then restart Fusion.
+- **macOS:** unzip the package for Apple silicon (`arm64`) or Intel (`x86_64`),
+  open `ZenExport-Setup.app`, then restart Fusion.
+- Offline payload and embedded Python; no separate Python installation or admin
+  access is required. Linux is not supported by the native Fusion desktop app.
+- Automatically selects Fusion's per-user discovery folder and enables startup in
+  the manifest. One recognized legacy AddIns installation is updated in place.
+- Repeat installs are idempotent; updates and repairs retain settings and exports,
+  back up the previous installation, and roll back a failed directory publication.
+- Uninstall removes unchanged owned files while keeping custom/edited files.
+- New shared installer engine, build tools and native Windows/macOS CI. 79 local
+  automated tests pass; the actual Windows EXE passed isolated headless checks.
+
+The STL millimeter fix from 6.1.2 is included. The export workflow is otherwise
+unchanged. Stop separately registered development/script copies before using the
+installed version. Installation does not close Fusion or modify open designs.
+
+Installers are unsigned/not notarized. Download security prompts and live Fusion
+startup/export acceptance remain separate checks; headless success does not prove
+those behaviors. The release remains a preview. Build/test details and command-line
+uninstall instructions are in HOW_TO_BUILD_MSI.md.
+
+---
+
 # ZenExport 6.1.2 preview — STL scale fix
 
 Released: 2026-10-25.
