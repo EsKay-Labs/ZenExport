@@ -166,3 +166,13 @@ before sharing logs.
 - [Release notes](https://github.com/EsKay-Labs/ZenExport/blob/main/RELEASE_NOTES.md)
 
 **Free. Open source. Happy making! 🛠️🖨️**
+
+## Packaging a Fusion add-in release
+
+From the repository root, check out the release commit and run this command with Git (Bash or Git Bash). It packages the tracked runtime files under the folder name Fusion expects.
+
+```sh
+git archive --format=zip --prefix=ZenExport/ --output=ZenExport-universal.zip HEAD -- ZenExport.manifest ZenExport.py zenexport LICENSE
+```
+
+Upload `ZenExport-universal.zip` as an asset of a stable GitHub Release. Use a numeric tag such as `v6.2.0` matching the version in `ZenExport.manifest`.
