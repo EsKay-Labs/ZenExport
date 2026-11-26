@@ -2,6 +2,7 @@
   "autodeskProduct": "Fusion360",
   "type": "addin",
   "runOnStartup": true,
+  "id": "fdd27383-443a-4fe0-a9c8-3645d0bd79f6",
   "author": "ZenExport",
   "description": {
     "": "Automated local backup system with versioning, thumbnails, and instant access."
